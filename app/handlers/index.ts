@@ -17,18 +17,23 @@ export const onConnect = (wsClient: any) => {
 
     switch (jsonMessage.action) {
       case "CREATE_CHAT":
-        store.createChat(user);
-        wsClient.send(JSON.stringify({ text: "join chat" }));
+        const newChat = store.createChat(user);
+        wsClient.send(JSON.stringify(newChat));
         break;
+
       case "JOIN_CHAT":
-        wsClient.send(JSON.stringify({ text: "join chat" }));
+        const chat = store.joinChat(uuidv4(), user.id);
+        wsClient.send(JSON.stringify(chat));
         break;
+
       case "MESSAGE":
         wsClient.send(JSON.stringify({ text: "message!" }));
         break;
+
       case "LEAVE_CHAT":
         wsClient.send(JSON.stringify({ text: "leave chat" }));
         break;
+        
       default:
         wsClient.send(JSON.stringify({ error: "unknown command" }));
     }

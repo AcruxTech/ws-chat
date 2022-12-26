@@ -9,28 +9,13 @@ class Store {
     return this._chats;
   }
 
-  isChatExist(chat: IChat) {
-    this._chats.forEach((c) => {
-      if (c.id === chat.id) {
-        return true;
-      }
-    });
-    return false;
-  }
-
-  isUserExist(user: IUser) {
+  isUserExist(userId: string) {
     this._users.forEach((u) => {
-      if (u.id === user.id) {
+      if (u.id === userId) {
         return true;
       }
     });
     return false;
-  }
-
-  createUser(user: IUser) {
-    if (!this.isUserExist(user)) {
-      this._users.push(user);
-    }
   }
 
   getUserById(id: string) {
@@ -41,10 +26,37 @@ class Store {
     });
   }
 
-  createChat(user: IUser) {
-    if (!this.isUserExist(user)) {
+  createUser(user: IUser) {
+    if (!this.isUserExist(user.id)) {
       this._users.push(user);
     }
+  }
+
+  isChatExist(chatId: string) {
+    this._chats.forEach((c) => {
+      if (c.id === chatId) {
+        return true;
+      }
+    });
+    return false;
+  }
+
+  // remake return types
+  getChatById(id: string): IChat | null {
+    this._chats.forEach((c) => {
+      if (c.id === id) {
+        return c;
+      }
+    });
+    return null;
+  }
+
+  createChat(user: IUser) {
+    // add new user if this one doesn't exist
+    if (!this.isUserExist(user.id)) {
+      this._users.push(user);
+    }
+
     const newChat: IChat = {
       id: uuidv4(),
       userIds: [user.id],
@@ -53,11 +65,13 @@ class Store {
     return newChat;
   }
 
-  joinChat(chat: IChat, user: IUser) {
-    if (!this.isChatExist(chat)) {
+  joinChat(chatId: string, userId: string) {
+    const chat = this.getChatById(chatId);
+    if (chat === null) {
       throw "The chat with same id does not exist!";
     }
-    chat.userIds.push(user.id);
+    chat.userIds.push(userId);
+    return chat;
   }
 }
 
