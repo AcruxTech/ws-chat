@@ -1,7 +1,14 @@
-import { IRequest } from "../types";
+import { v4 as uuidv4 } from "uuid";
+import { IRequest } from "../types/actions";
+import { store } from "../store";
+import { IUser } from "../types/entities";
 
 export const onConnect = (wsClient: any) => {
-  console.log("new user");
+  let user: IUser = {
+    id: uuidv4()
+  }
+  store.createUser(user);
+  console.log("new user", user);
 
   wsClient.on("message", (message: any) => {
     // convert text message to JSON
@@ -9,6 +16,10 @@ export const onConnect = (wsClient: any) => {
     console.log(jsonMessage);
 
     switch (jsonMessage.action) {
+      case "CREATE_CHAT":
+        store.createChat(user);
+        wsClient.send(JSON.stringify({ text: "join chat" }));
+        break;
       case "JOIN_CHAT":
         wsClient.send(JSON.stringify({ text: "join chat" }));
         break;
