@@ -22,7 +22,7 @@ export const onConnect = (wsClient: any) => {
         break;
 
       case "JOIN_CHAT":
-        const chat = store.joinChat(uuidv4(), user.id);
+        const chat = store.joinChat(jsonMessage.chatId, user.id);
         wsClient.send(JSON.stringify(chat));
         break;
 
@@ -31,6 +31,7 @@ export const onConnect = (wsClient: any) => {
         break;
 
       case "LEAVE_CHAT":
+        store.leaveChat(jsonMessage.chatId, user.id);
         wsClient.send(JSON.stringify({ text: "leave chat" }));
         break;
         

@@ -5,7 +5,13 @@ class Store {
   _users: Array<IUser>;
   _chats: Array<IChat>;
 
-  get chats() {
+  getChatsByUserId(id: string) {
+    let chats: Array<IChat>;
+    this._chats.forEach(chat => {
+      if (chat.userIds.indexOf(id) != -1) {
+        chats.push(chat);
+      }
+    });
     return this._chats;
   }
 
@@ -72,6 +78,14 @@ class Store {
     }
     chat.userIds.push(userId);
     return chat;
+  }
+
+  leaveChat(chatId: string, userId: string) {
+    const chat = this.getChatById(chatId);
+    if (chat === null) {
+      throw "The chat with same id does not exist!";
+    }
+    chat.userIds.splice(chat.userIds.indexOf(userId), 1);
   }
 }
 
