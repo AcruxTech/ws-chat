@@ -49,7 +49,7 @@ const HeaderWrapper = styled.header<{ isDark?: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100px;
   z-index: 2;
   backdrop-filter: blur(7px);
@@ -121,13 +121,5 @@ const MenuIcon = styled.div`
     }
     width: 100%;
     height: 100%;
-  }
-`;
-const Image = styled.img`
-  margin: 0;
-  object-fit: cover;
-  color: #fff;
-  @media (prefers-color-scheme: dark) {
-    color: #fff;
   }
 `;

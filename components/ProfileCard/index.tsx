@@ -14,7 +14,17 @@ export const ProfileCard = observer(() => {
       id: 'string',
       title: 'string',
       lastMessage: 'string'
-    }
+    },
+    {
+      id: 'string',
+      title: 'string',
+      lastMessage: 'string'
+    },
+    {
+      id: 'string',
+      title: 'string',
+      lastMessage: 'string'
+    },
   ];
 
   return (
@@ -39,9 +49,16 @@ export const ProfileCard = observer(() => {
 
 const Wrapper = styled(Content)`
   margin-top: 120px;
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 768px) {
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
 `;
 
 const Card = styled.div<{ isDark?: boolean }>`
@@ -60,6 +77,11 @@ const Card = styled.div<{ isDark?: boolean }>`
     props.isDark
       ? 'var(--dark-theme-text-color)'
       : 'var(--light-theme-text-color)'};
+
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Me = styled(Card)<{ isDark?: boolean }>``;
@@ -85,27 +107,22 @@ const Avatar = styled.img`
 `;
 
 const Data = styled.div`
-  gap: 1em;
   display: flex;
   flex-direction: column;
-  margin-left: 15px;
-  @media screen and (min-width: 1380px) {
-    width: 49%;
-  }
+  padding: 20px;
+  gap: 40px;
 `;
 
-const Name = styled.p`
+const Name = styled.span`
   font-size: 3em;
   font-weight: 700;
-  margin: 0;
 `;
 
-const Description = styled.p`
+const Description = styled.span`
   font-size: calc(12px + 0.5vw);
-  margin-top: 0.5em;
-  margin: 0;
 `;
 
 const Chats = styled(Card)<{ isDark?: boolean }>`
   padding: 20px;
+  gap: 20px;
 `;

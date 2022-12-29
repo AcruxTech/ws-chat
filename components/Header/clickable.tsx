@@ -75,6 +75,6 @@ const Langs = styled.p<{ isDark?: boolean }>`
 `;
 
 const LangsWrapper = styled.div`
-  width: 50px;
-  text-align: center;
+  width: 30px;
+  text-align: right;
 `;
