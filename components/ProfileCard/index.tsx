@@ -4,26 +4,33 @@ import { useLang } from '../../store/lang';
 import styled from 'styled-components';
 import defaultAvatar from '../../assets/images/default-avatar.jpg';
 import { store } from '../../store';
+import { ChatItem } from '../ChatItem';
 
 export const ProfileCard = observer(() => {
   const member: any = undefined;
   const lang = useLang();
-  const chats = [];
+  const chats = [
+    {
+      id: 'string',
+      title: 'string',
+      lastMessage: 'string'
+    }
+  ];
 
   return (
     <Wrapper>
-      <Card isDark={store.isDark}>
-        <Photo>
-          <Image src={defaultAvatar.src} alt="" />
-        </Photo>
+      <Me isDark={store.isDark}>
+        <Media>
+          <Avatar src={defaultAvatar.src} alt="" />
+        </Media>
         <Data>
           <Name>AcruxTech</Name>
           <Description>Это я это я это я</Description>
         </Data>
-      </Card>
-      <Chats>
+      </Me>
+      <Chats isDark={store.isDark}>
         {chats.map((item, index) => (
-          <div key={index}>eeee</div>
+          <ChatItem chat={item} key={index} />
         ))}
       </Chats>
     </Wrapper>
@@ -33,12 +40,18 @@ export const ProfileCard = observer(() => {
 const Wrapper = styled(Content)`
   margin-top: 120px;
   width: 100vw;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Card = styled.div<{ isDark?: boolean }>`
+  width: 45%;
+  height: 500px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  border-radius: 10px;
+  overflow: hidden;
+
   background-color: ${props =>
     props.isDark
       ? 'var(--dark-theme2-bg-color)'
@@ -47,31 +60,24 @@ const Card = styled.div<{ isDark?: boolean }>`
     props.isDark
       ? 'var(--dark-theme-text-color)'
       : 'var(--light-theme-text-color)'};
-  border-radius: 10px;
-  overflow: hidden;
-
-  @media screen and (min-width: 1380px) {
-    flex-direction: row;
-    height: 500px;
-  }
 `;
 
-const Photo = styled.div`
-  position: relative;
+const Me = styled(Card)<{ isDark?: boolean }>``;
+
+const Media = styled.div`
   width: 100%;
+  background-image: url('https://oir.mobi/uploads/posts/2022-08/1661353761_1-oir-mobi-p-novogodnii-fon-na-rabochii-stol-vkontakte-1.jpg');
+  background-size: contain;
   display: flex;
-  flex-direction: column;
-  @media screen and (min-width: 1380px) {
-    width: 49%;
-  }
+  justify-content: center;
+  padding: 20px 0;
 `;
 
-const Image = styled.img`
-  margin: 0;
-  z-index: 1;
+const Avatar = styled.img`
   object-fit: cover;
   width: 150px;
   height: 150px;
+  border-radius: 50%;
   @media screen and (min-width: 1380px) {
     width: 250px;
     height: 250px;
@@ -79,9 +85,6 @@ const Image = styled.img`
 `;
 
 const Data = styled.div`
-  width: 95%;
-  height: 100%;
-  padding: 1em 0;
   gap: 1em;
   display: flex;
   flex-direction: column;
@@ -103,4 +106,6 @@ const Description = styled.p`
   margin: 0;
 `;
 
-const Chats = styled.div``;
+const Chats = styled(Card)<{ isDark?: boolean }>`
+  padding: 20px;
+`;
