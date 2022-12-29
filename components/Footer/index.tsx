@@ -1,8 +1,8 @@
-import { observer } from "mobx-react";
-import { Content } from "../Content";
-import { useLang } from "../../store/lang";
-import { store } from "../../store";
-import styled from "styled-components";
+import { observer } from 'mobx-react';
+import { Content } from '../Content';
+import { useLang } from '../../store/lang';
+import { store } from '../../store';
+import styled from 'styled-components';
 
 export const Footer = observer(() => {
   const lang = useLang();
@@ -22,10 +22,10 @@ const FooterWrapper = styled.footer<{ isDark?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) =>
+  background-color: ${props =>
     props.isDark
-      ? "var(--dark-theme2-bg-color)"
-      : "var(--light-theme2-bg-color)"};
+      ? 'var(--dark-theme2-bg-color)'
+      : 'var(--light-theme2-bg-color)'};
   @media (prefers-color-scheme: dark) {
     background-color: rgba(255, 255, 255, 0.1);
   }

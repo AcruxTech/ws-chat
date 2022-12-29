@@ -1,19 +1,18 @@
-import { observer } from "mobx-react";
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import styled from "styled-components";
-import { store } from "../../store";
-import { Content } from "../Content";
-import { Clickable } from "./clickable";
-import { burgerIcon, closeIcon } from "./icons";
-
+import { observer } from 'mobx-react';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import styled from 'styled-components';
+import { store } from '../../store';
+import { Content } from '../Content';
+import { Clickable } from './clickable';
+import { burgerIcon, closeIcon } from './icons';
 
 export const Header = observer(() => {
   const [matchesMobile, setMatchesMobile] = useState(false);
   const [mobileMenuOpened, setMobileMenuOpened] = useState(false);
   useEffect(() => {
-    setMatchesMobile(window.matchMedia("(max-width: 580px)").matches);
-    window.matchMedia("(max-width: 580px)").addEventListener("change", (e) => {
+    setMatchesMobile(window.matchMedia('(max-width: 580px)').matches);
+    window.matchMedia('(max-width: 580px)').addEventListener('change', e => {
       setMatchesMobile(e.matches);
     });
   }, []);
@@ -29,7 +28,7 @@ export const Header = observer(() => {
             <MenuIcon
               onClick={() => {
                 setMobileMenuOpened(!mobileMenuOpened);
-                document.body.classList.toggle("no-scroll");
+                document.body.classList.toggle('no-scroll');
               }}
             >
               {mobileMenuOpened ? closeIcon : burgerIcon}
@@ -46,7 +45,6 @@ export const Header = observer(() => {
   );
 });
 
-
 const HeaderWrapper = styled.header<{ isDark?: boolean }>`
   position: fixed;
   top: 0;
@@ -55,10 +53,10 @@ const HeaderWrapper = styled.header<{ isDark?: boolean }>`
   height: 100px;
   z-index: 2;
   backdrop-filter: blur(7px);
-  background-color: ${(props) =>
+  background-color: ${props =>
     props.isDark
-      ? "var(--dark-theme2-bg-color)"
-      : "var(--light-theme2-bg-color)"};
+      ? 'var(--dark-theme2-bg-color)'
+      : 'var(--light-theme2-bg-color)'};
 `;
 
 const ContentHeader = styled(Content)`
@@ -72,10 +70,10 @@ const ContentHeader = styled(Content)`
 `;
 
 const Logo = styled.p<{ isDark?: boolean }>`
-  color: ${(props) =>
+  color: ${props =>
     props.isDark
-      ? "var(--dark-theme-text-color)"
-      : "var(--light-theme-text-color)"};
+      ? 'var(--dark-theme-text-color)'
+      : 'var(--light-theme-text-color)'};
   font-family: Montserrat, OpenSans, sans-serif;
   font-weight: 700;
   font-size: 1.75rem;
@@ -94,17 +92,17 @@ const ClickableContent = styled.div<{ isDark?: boolean; opened: boolean }>`
   width: 100vw;
   height: 100vh;
   padding: 20px;
-  transform: ${(props) => (props.opened ? "none" : "translateX(-100vw)")};
+  transform: ${props => (props.opened ? 'none' : 'translateX(-100vw)')};
   transition: transform 0.3s ea;
   justify-content: center;
   flex-direction: column;
   gap: 20px;
   will-change: transform, opacity;
   transition: transform 0.4s cubic-bezier(0, 0, 0.3, 1);
-  background-color: ${(props) =>
+  background-color: ${props =>
     props.isDark
-      ? "var(--dark-theme-bg-color)"
-      : "var(--light-theme-bg-color)"};
+      ? 'var(--dark-theme-bg-color)'
+      : 'var(--light-theme-bg-color)'};
   z-index: 5;
   @media (max-width: 375px) {
     flex-direction: column;

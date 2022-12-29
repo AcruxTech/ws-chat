@@ -1,10 +1,10 @@
-import { observer } from "mobx-react";
-import Head from "next/head";
-import { ReactNode } from "react";
-import styled from "styled-components";
-import { store } from "../../store";
-import { Footer } from "../Footer";
-import { Header } from "../Header";
+import { observer } from 'mobx-react';
+import Head from 'next/head';
+import { ReactNode } from 'react';
+import styled from 'styled-components';
+import { store } from '../../store';
+import { Footer } from '../Footer';
+import { Header } from '../Header';
 
 type IProps = {
   children: ReactNode;
@@ -26,10 +26,10 @@ export const Page = observer((props: IProps) => {
 
 const PageWrapper = styled.div<{ isDark?: boolean }>`
   min-width: 100%;
-  background: ${(props) =>
+  background: ${props =>
     props.isDark
-      ? "var(--dark-theme-bg-color)"
-      : "var(--light-theme-bg-color)"};
+      ? 'var(--dark-theme-bg-color)'
+      : 'var(--light-theme-bg-color)'};
 `;
 
 const Container = styled.main`

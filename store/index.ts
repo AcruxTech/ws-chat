@@ -1,18 +1,18 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable } from 'mobx';
 
 class Storage {
   constructor() {
     makeAutoObservable(this);
   }
 
-  lang: "ru" | "en" = "ru";
+  lang: 'ru' | 'en' = 'ru';
   changeLang = () => {
     switch (this.lang) {
-      case "ru":
-        this.lang = "en";
+      case 'ru':
+        this.lang = 'en';
         break;
-      case "en":
-        this.lang = "ru";
+      case 'en':
+        this.lang = 'ru';
         break;
     }
   };

@@ -1,6 +1,6 @@
-import { ru } from "./ru";
-import { en } from "./en";
-import { store } from "../../store";
+import { ru } from './ru';
+import { en } from './en';
+import { store } from '../../store';
 
 const langs = { ru, en };
 

@@ -1,11 +1,10 @@
-import styled from "styled-components";
-import { observer } from "mobx-react";
-import Image from "next/image";
-import NavLink from "../NavLink";
-import sunIcon from "../../assets/icons/sun.svg";
-import { store } from "../../store";
-import { useLang } from "../../store/lang";
-
+import styled from 'styled-components';
+import { observer } from 'mobx-react';
+import Image from 'next/image';
+import NavLink from '../NavLink';
+import sunIcon from '../../assets/icons/sun.svg';
+import { store } from '../../store';
+import { useLang } from '../../store/lang';
 
 export const Clickable = observer(() => {
   const lang = useLang();
@@ -65,10 +64,10 @@ const ThemeButton = styled.button`
 `;
 
 const Langs = styled.p<{ isDark?: boolean }>`
-  color: ${(props) =>
+  color: ${props =>
     props.isDark
-      ? "var(--dark-theme-text-color)"
-      : "var(--light-theme-text-color)"};
+      ? 'var(--dark-theme-text-color)'
+      : 'var(--light-theme-text-color)'};
   @media (max-width: 580px) {
     margin: 0;
   }
