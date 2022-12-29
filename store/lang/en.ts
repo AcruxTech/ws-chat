@@ -1,7 +1,8 @@
 import { Lingo } from './ru';
 
 export const en: Lingo = {
-  messenger: 'Messenger',
   profile: 'Profile',
+  chat: 'Chat',
+  about: 'About us',
   footerRights: 'All rights reserved © 2022'
 };

@@ -13,7 +13,8 @@ export const Clickable = observer(() => {
     <>
       <NavMenu>
         <NavLink href="/" name={lang.profile} />
-        <NavLink href="/mail" name={lang.messenger} />
+        <NavLink href="/chat" name={lang.chat} />
+        <NavLink href="/about" name={lang.about} />
       </NavMenu>
       <Buttons>
         <ThemeButton onClick={store.changeTheme}>

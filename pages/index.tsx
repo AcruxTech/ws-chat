@@ -1,5 +1,10 @@
 import { Page } from '../components/Page';
+import { ProfileCard } from '../components/ProfileCard';
 
 export default function Home() {
-  return <Page>content</Page>;
+  return (
+    <Page>
+      <ProfileCard />
+    </Page>
+  );
 }

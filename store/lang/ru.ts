@@ -1,6 +1,7 @@
 export const ru = {
-  messenger: 'Сообщения',
   profile: 'Профиль',
+  chat: 'Чат',
+  about: 'О нас',
   footerRights: 'Все права защищены © 2022'
 };
 
