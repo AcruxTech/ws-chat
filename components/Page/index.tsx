@@ -12,7 +12,7 @@ type IProps = {
 
 export const Page = observer((props: IProps) => {
   return (
-    <PageWrapper style={{ backgroundColor: store.isDark ? "black" : "white" }}>
+    <PageWrapper isDark={store.isDark}>
       <Head>
         <title>BetterWeb</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -24,12 +24,16 @@ export const Page = observer((props: IProps) => {
   );
 });
 
-const PageWrapper = styled.div`
+const PageWrapper = styled.div<{ isDark?: boolean }>`
   min-width: 100%;
+  background: ${(props) =>
+    props.isDark
+      ? "var(--dark-theme-bg-color)"
+      : "var(--light-theme-bg-color)"};
 `;
 
 const Container = styled.main`
-  min-height: 100vh;
+  min-height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
   align-items: center;

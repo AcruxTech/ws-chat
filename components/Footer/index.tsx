@@ -1,29 +1,45 @@
-import { Content } from "../Content";
 import { observer } from "mobx-react";
-import { useState } from "react";
+import { Content } from "../Content";
 import { useLang } from "../../store/lang";
-import styled from "styled-components";
 import { store } from "../../store";
+import styled from "styled-components";
 
 export const Footer = observer(() => {
   const lang = useLang();
 
   return (
-    <>
-      <FooterWrapper
-        style={{
-          backgroundColor: store.isDark
-            ? "rgba(255, 255, 255, 0.1)"
-            : "#f5f5f5",
-        }}
-      >
-        <FooterContent>
-          <DateParagraph>{lang.footerRights}</DateParagraph>
-        </FooterContent>
-      </FooterWrapper>
-    </>
+    <FooterWrapper isDark={store.isDark}>
+      <FooterContent>
+        <DateParagraph>{lang.footerRights}</DateParagraph>
+      </FooterContent>
+    </FooterWrapper>
   );
 });
+
+const FooterWrapper = styled.footer<{ isDark?: boolean }>`
+  width: 100%;
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${(props) =>
+    props.isDark
+      ? "var(--dark-theme2-bg-color)"
+      : "var(--light-theme2-bg-color)"};
+  @media (prefers-color-scheme: dark) {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+`;
+
+const FooterContent = styled(Content)`
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @media (max-width: 410px) {
+    flex-direction: column;
+  }
+`;
 
 const DateParagraph = styled.p`
   color: gray;
@@ -41,38 +57,4 @@ const DateParagraph = styled.p`
     font-size: 0.9rem;
     text-align: center;
   }
-`;
-
-const FooterContent = styled(Content)`
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  justify-content: space-between;
-  @media (max-width: 410px) {
-    flex-direction: column;
-  }
-`;
-
-const FooterWrapper = styled.footer`
-  min-height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 30px;
-  padding: 20px 0;
-  width: 100%;
-  background-color: #ebecf0;
-  @media (prefers-color-scheme: dark) {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-`;
-
-const ContactUsButton = styled.button`
-  background: transparent;
-  border-radius: 2px;
-  padding: 5px 50px;
-  border: 1px solid grey;
-  color: grey;
-  cursor: pointer;
 `;
