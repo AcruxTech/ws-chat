@@ -48,7 +48,6 @@ export const ProfileCard = observer(() => {
 });
 
 const Wrapper = styled(Content)`
-  margin-top: 120px;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -62,7 +61,7 @@ const Wrapper = styled(Content)`
 `;
 
 const Card = styled.div<{ isDark?: boolean }>`
-  width: 45%;
+  width: 48%;
   height: 500px;
   display: flex;
   flex-direction: column;

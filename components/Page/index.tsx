@@ -18,7 +18,7 @@ export const Page = observer((props: IProps) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Header />
-      <Container>{props.children}</Container>
+      <Container isDark={store.isDark}>{props.children}</Container>
       <Footer />
     </PageWrapper>
   );
@@ -32,11 +32,13 @@ const PageWrapper = styled.div<{ isDark?: boolean }>`
       : 'var(--light-theme-bg-color)'};
 `;
 
-const Container = styled.main`
+const Container = styled.main<{isDark?: boolean}>`
   min-height: calc(100vh - 100px);
+  padding-top: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 30px;
+  color: ${props => props.isDark ? "var(--dark-theme-text-color)" : "var(--light-theme-text-color)"};
 `;

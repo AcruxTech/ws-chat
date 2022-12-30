@@ -60,8 +60,13 @@ const ThemeButton = styled.button`
 
   &:hover {
     background-color: #ddd;
-    box-shadow: 0px 0px 2px 0px #aaa inset;
+    box-shadow: 0px 0px 4px 0px rgba(34, 60, 80, 0.2) inset;
   }
+`;
+
+const LangsWrapper = styled.div`
+  width: 3em;
+  text-align: center;
 `;
 
 const Langs = styled.p<{ isDark?: boolean }>`
@@ -69,12 +74,13 @@ const Langs = styled.p<{ isDark?: boolean }>`
     props.isDark
       ? 'var(--dark-theme-text-color)'
       : 'var(--light-theme-text-color)'};
+  transition: ease-in-out 0.3s;
+
+  &:hover {
+    letter-spacing: 0.1em;
+  }
+
   @media (max-width: 580px) {
     margin: 0;
   }
-`;
-
-const LangsWrapper = styled.div`
-  width: 30px;
-  text-align: right;
 `;
