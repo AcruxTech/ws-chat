@@ -47,6 +47,4 @@ const CircleInner = styled.div`
   font-weight: 700;
 `;
 
-const LastMessage = styled.span`
-  
-`;
+const LastMessage = styled.span``;

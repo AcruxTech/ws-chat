@@ -24,7 +24,7 @@ export const ProfileCard = observer(() => {
       id: 'string',
       title: 'string',
       lastMessage: 'string'
-    },
+    }
   ];
 
   return (
@@ -77,7 +77,6 @@ const Card = styled.div<{ isDark?: boolean }>`
     props.isDark
       ? 'var(--dark-theme-text-color)'
       : 'var(--light-theme-text-color)'};
-
 
   @media (max-width: 768px) {
     width: 100%;

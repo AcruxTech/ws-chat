@@ -18,7 +18,15 @@ const NavLink = observer((props: { href: string; name: string }) => {
 
   return (
     <Link href={props.href} passHref legacyBehavior>
-      <LinkStyled isDark={store.isDark} active={router.asPath === props.href}>
+      <LinkStyled
+        isDark={store.isDark}
+        active={
+          // проверяем наличие подстроки в ссылке
+          // чтобы при /chats/{someId} подсветка также работала
+          router.asPath.includes(props.href.slice(1) || undefined, 1) ||
+          router.asPath === props.href
+        }
+      >
         {props.name}
       </LinkStyled>
     </Link>
