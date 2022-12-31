@@ -1,2 +1,2 @@
-# ws-chat
+# ws-chat-server
  
