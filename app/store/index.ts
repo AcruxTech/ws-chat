@@ -47,7 +47,6 @@ class Store {
     return false;
   }
 
-  // remake return types
   getChatById(id: string): IChat | null {
     this._chats.forEach((c) => {
       if (c.id === id) {
@@ -65,6 +64,7 @@ class Store {
 
     const newChat: IChat = {
       id: uuidv4(),
+      lastMessage: "Start chating...",
       userIds: [user.id],
     };
     this._chats.push(newChat);

@@ -5,7 +5,9 @@ import { IUser } from "../types/entities";
 
 export const onConnect = (wsClient: any) => {
   let user: IUser = {
-    id: uuidv4()
+    id: uuidv4(),
+    name: "Your name (change!)",
+    description: "Your description (change!)",
   }
   store.createUser(user);
   console.log("new user", user);
@@ -16,6 +18,11 @@ export const onConnect = (wsClient: any) => {
     console.log(jsonMessage);
 
     switch (jsonMessage.action) {
+      case "CHANGE_USER":
+        user.name = jsonMessage.newName;
+        user.description = jsonMessage.newDescription;
+        break;
+
       case "CREATE_CHAT":
         const newChat = store.createChat(user);
         wsClient.send(JSON.stringify(newChat));
